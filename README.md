@@ -58,7 +58,7 @@ response = requests.get('http://en.wikipedia.org/', headers=headers, cookies=coo
 
 Make sure you're running node 6 or greater. The test suite will fail on older versions of node.
 
-If you add a new generator, make sure to update the list of supported languages in [cli.js](bin/cli.js) or else it won't be accessible from the command line. Further, you'll want to update test.js and index.js for your new generator to make it part of the testing.
+If you add a new generator, make sure to update the list of supported languages in [cli.js](bin/cli.js) or else it won't be accessible from the command line. Further, you'll want to update [test.js](test.js) and [index.js](index.js) for your new generator to make it part of the testing.
 
 If you want to add new functionality, start with a test.
 
