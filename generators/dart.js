@@ -38,9 +38,23 @@ var toDart = function (curlCommand) {
     s += '\n'
   }
 
+  var hasData = r.dataArray;
+  if (hasData) {
+    s += '  var data = {\n'
+    r.dataArray.forEach(function (kv) {
+      var splitKv = kv.replace(/\\"/g, '"').split('=')
+      var key = splitKv[0] || ''
+      var val = splitKv[1] || ''
+      s += "    '" + key + "': '" + val + "',\n"
+    });
+    s += '  };\n'
+    s += '\n';
+  }
+
   s += '  var res = await http.' + r.method + "('" + r.url + "'"
   if (hasHeaders) s += ', headers: headers'
   else if (r.auth) s += ", headers: {'Authentication': authn}"
+  if (hasData) s += ', body: data'
 
   /* eslint-disable no-template-curly-in-string */
   s +=
